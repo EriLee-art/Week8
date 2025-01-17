@@ -10,6 +10,7 @@ Create a menu app as seen in this week’s video. What you create is up to you a
 // Character Creation app
 
 // Object creates a character by assigning a name, title, race and gender
+// It is to be called upon by the Menu object
 class Character{
     constructor(name, title, race, gender) {
         this.name = name
@@ -26,6 +27,7 @@ class Menu{
         this.characters = []
     }
 
+    // This is the Main Menu, prompting a selection screen
     mainMenu(){
         return prompt(`
             Character Creation:
@@ -37,9 +39,11 @@ class Menu{
             `);
     }
 
+    // This is how the application initializes
     start(){
         let selection = this.mainMenu();
 
+        // Depending on the selection made on the main menu, this will take the user to a new menu
         while (selection != 0) {
             switch(selection){
                 
@@ -59,7 +63,7 @@ class Menu{
         alert(`Exiting Character Creation, 'til next time!`);
     }
 
-    // Creates a new character
+    // Prompts for the creation of a new character and adds it to the characters array
     addCharacter(){
         let newCharName = prompt("Enter Name");
         let newCharTitle = prompt("Enter Character Title");
@@ -68,11 +72,13 @@ class Menu{
         this.characters.push(new Character(newCharName, newCharTitle, newCharRace, newCharGender));
     }
 
+    // Prompts for which character to delete in the characters array based off their matching index
     deleteCharacter(){
         let charIndex = prompt(`Enter character index to DELETE:`);
         this.characters.splice(charIndex, 1);
     }
 
+    // Displays all the characters the user created
     viewCharacters(){
         let displayCharacters = "";
         for (let i = 0; i < this.characters.length; i++) {
@@ -84,6 +90,8 @@ class Menu{
     }
 }
 
+// Creates a variable that can be used to initialize the menu app
 let initMenu = new Menu;
 
+// Initializes the app
 initMenu.start();
